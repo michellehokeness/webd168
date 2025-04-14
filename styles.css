@@ -1,0 +1,30 @@
+header {
+ 
+  text-align: center;
+}
+
+nav {
+  background-image: url(images/textile-1280x110.jpg);
+  background-repeat: repeat-x; 
+}
+.clowder {
+  display: block;
+  float: right;
+  width: 50%;
+}
+.content {
+  width: 90%;
+  margin: auto;
+}
+
+.imgSon {
+  float: left;
+  margin-right: 25px;
+}
+
+.para {
+  float: left;
+  width: 50%;
+}
+
+
