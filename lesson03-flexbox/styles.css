@@ -1,0 +1,105 @@
+/* Reset default margin, padding, and box-sizing for all elements */
+* {
+    margin: 0; /* Removes default margin from all elements */
+    padding: 0; /* Removes default padding from all elements */
+    box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+}
+
+/* Body styling */
+body {
+    font-family: 'Roboto', sans-serif; /* Sets the font family to Roboto for the entire page */
+    background-color: #d9e2e8; /* Sets a light gray-blue background color for the page */
+}
+
+/* General styling for the container holding the cards */
+.container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;  
+}
+
+/* Card styling */
+.card {
+   background-color: #fff;
+   border-radius: 10px;
+   box-shadow: 0 4px 6px rgba(0,0,0,0.8);
+   padding: 20px;
+   text-align: center;
+   width: 300px; 
+}
+
+/* Styling for the card title (h2) */
+.card h2 {
+    color: #333; /* Sets the text color to dark gray */
+    font-size: 24px; /* Sets the font size of the title */
+    margin-bottom: 10px; /* Adds space below the title */
+}
+
+/* Styling for the paragraph text inside the card */
+.card p {
+    color: #666; /* Sets the text color to medium gray */
+    font-size: 16px; /* Sets the font size of the paragraph text */
+    margin-bottom: 20px; /* Adds space below the paragraph text */
+}
+
+/* Styling for the image inside each card */
+.card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+/* Styling for the "Learn More" button */
+.learn-more-btn {
+    background-color: #3498db; /* Sets the button's background color to a blue */
+    border: none; /* Removes any border from the button */
+    border-radius: 4px; /* Rounds the corners of the button */
+    color: white; /* Sets the text color of the button to white */
+    cursor: pointer; /* Changes the cursor to a pointer when hovering over the button */
+    font-size: 16px; /* Sets the font size of the button text */
+    padding: 10px 20px; /* Adds padding inside the button (top/bottom: 10px, left/right: 20px) */
+    text-decoration: none; /* Removes the underline from the link inside the button */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for background color and size on hover */
+    display: block;
+    margin: 0 auto;
+    width: 125px;
+}
+
+/* Button color for the second card */
+.card:nth-child(2) .learn-more-btn {
+    background-color: #27ae60; /* Sets a green color for the "Learn More" button on the second card */
+}
+
+/* Button color for the third card */
+.card:nth-child(3) .learn-more-btn {
+    background-color: #e74c3c; /* Sets a red color for the "Learn More" button on the third card */
+}
+
+/* Hover effects for all buttons */
+.learn-more-btn:hover {
+    background-color: #2980b9; /* Darker blue color on hover for the first button */
+    transform: scale(1.05); /*  Slightly enlarges the button when it is hovered, making it appear more interactive. */
+}
+
+/* Hover effect for the green button (second card) */
+.card:nth-child(2) .learn-more-btn:hover {
+    background-color: #2ecc71; /* Darker green color on hover */
+}
+
+/* Hover effect for the red button (third card) */
+.card:nth-child(3) .learn-more-btn:hover {
+    background-color: #c0392b; /* Darker red color on hover */
+}
+
+/* Responsive adjustments for smaller screen sizes */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 100%;
+    }
+}
