@@ -1,5 +1,7 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 header {
  
@@ -11,6 +13,23 @@ hr {
   margin: auto;
   height: 50px;
 }
+.hobbies {
+  width: 90%;
+  margin: 0 auto;
+}
+.intro {
+  margin-top: -15px;
+  margin-left: -1px;
+  border-left: 20px solid #8bc8d5;
+  border-bottom: 1px dotted #8bc8d5;
+  border-top: 20px solid rgba(211,211,211,.5);
+  overflow: hidden;
+  padding: 20px;
+}
+ol.list {
+  list-style-position: inside;
+  padding-left: 70px;
+}
 span {
   color: rgb(77, 196, 218);
 }
@@ -20,7 +39,7 @@ span {
   width: 50%;
 }
 .content {
-  width: 90%;
+  width: 95%;
   margin: auto;
 }
 .imgSon {
@@ -28,8 +47,8 @@ span {
   margin-right: 25px;
 }
 .para {
-  float: left;
-  width: 50%;
+  clear: both;
+  padding-top: 20px;
 }
 
 
