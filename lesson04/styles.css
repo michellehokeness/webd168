@@ -1,0 +1,213 @@
+* {
+  margin: 0; /* Removes default margin */
+  padding: 0; /* Removes default padding */
+  box-sizing: border-box; /* Ensures padding and borders are included in element's total width/height */
+}
+body {
+  font-family: 'Poppins', sans-serif; /* Sets the font style */
+  line-height: 1.6; /* Increases line spacing for readability */
+}
+
+nav {
+  background-color: #90c7e3; /* Light blue background */
+  font-weight: bold; /* Makes text bold */
+}
+
+ul {
+  list-style-type: none; /* Removes default bullet points */
+}
+
+a {
+  text-decoration: none; /* Removes underline from links */
+  color: #333; /* Dark gray text color */
+}
+
+a:hover {
+  color: #fff; /* Changes link color to white when hovered */
+}
+
+h2 {
+  margin-bottom: 20px; /* Adds space below h2 */
+}
+
+p {
+  margin: 20px 0; /* Adds vertical spacing between paragraphs */
+}
+footer {
+  font-size: 75%; /* Reduces text size */
+  text-align: center; /* Centers text */
+}
+.container-fluid {
+  width: 100%; /* Full width of the viewport */
+  padding-right: 15px; /* Adds padding to the right */
+  padding-left: 15px; /* Adds padding to the left */
+  margin-right: auto; /* Centers the container */
+  margin-left: auto; /* Centers the container */
+}
+.hero-image {
+  background-size: cover; /* Makes the background image cover the element */
+  background-position: center center; /* Centers the background image */
+  height: 50vh; /* Sets height to 50% of viewport height */
+  display: flex; /* Enables flexbox */
+  justify-content: center; /* Centers content horizontally */
+  align-items: center; /* Centers content vertically */
+  color: white; /* Sets text color to white */
+  text-align: center; /* Centers text alignment */
+}
+.hero-home-image {
+  background-image: url('images/coast.jpg'); /* Sets background image */
+}
+.hero-activities-image {
+  background-image: url('images/trail.jpg'); /* Sets background image */
+}
+.hero-yurt-image {
+  background-image: url('images/yurt.jpg'); /* Sets background image */
+}
+.hero-reservations-image {
+  background-image: url('images/reservations.jpg'); /* Sets background image */
+}
+.hero-text h1 {
+  font-family: 'Style Script', sans-serif; /* Uses a decorative font */
+  font-size: 3rem; /* Sets large font size */
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 1); /* Adds a dark shadow for contrast */
+}
+.hero-text p {
+  font-size: 1.5rem; /* Sets paragraph text size */
+}
+.hero-text .btn {
+  background-color: coral; /* Sets button background color */
+  color: #fff; /* White text */
+  font-size: 1.25rem; /* Adjusts button text size */
+  padding: 10px 20px; /* Adds space inside button */
+  border-radius: 10px; /* Rounds button corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+  transition: all 0.3s ease; /* Smooth transition effect */
+}
+.hero-text .btn:hover {
+  background-color: #90c7e3; /* Changes button color on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Darkens shadow on hover */
+}
+.main-menu {
+  display: flex; /* Uses flexbox for layout */
+  justify-content: space-evenly; /* Evenly distributes menu items */
+}
+
+.main-menu a {
+  font-size: 20px; /* Sets font size */
+}
+.main {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to stack on smaller screens */
+  justify-content: center; /* Centers sections */
+  gap: 40px; /* Adds spacing between sections */
+  padding: 20px;
+}
+.content {
+  flex: 1 1 300px; /* Flexible width, but doesn't shrink below 300px */
+}
+.main h2 {
+  padding: 10px; /* Adds space inside the h2 */
+  background-color: #333; /* Dark background color */
+  color: #fff; /* White text color */
+  font-size: 1.3rem; /* Adjusts font size */
+}
+.resort {
+  color: #5C7fa3; /* Sets text color */
+  font-weight: bold; /* Makes text bold */
+}
+.contact {
+  margin-top: 40px; /* Adds space above the contact box */
+  border: 1px solid #000; /* Adds a thin black border */
+  padding: 10px; /* Adds space inside the box */
+  display: inline-block; /* Makes width only as wide as the content */
+  font-style: normal; /* Removes default italic style */
+}
+.contact p {
+  margin: 0; /* Removes default margin */
+  line-height: 1.3; /* Reduces spacing between lines */
+}
+form {
+  max-width: 500px; /* Restrict form width for better readability */
+  margin: 20px auto; /* Center the form on the page */
+  padding: 20px;
+  background: #f9f9f9; /* Light background for contrast */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+fieldset {
+  border: none; /* Remove default fieldset border */
+  margin-bottom: 20px; /* Add spacing between sections */
+  padding: 0;
+}
+legend {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+label {
+  display: block; /* Make labels appear above inputs */
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+input, textarea {
+  width: 100%; /* Full width for better usability */
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+textarea {
+  resize: vertical; /* Allow users to resize vertically only */
+  min-height: 80px; /* Set a reasonable minimum height */
+}
+input:focus, textarea:focus {
+  border-color: #007bff; /* Highlight input fields when focused */
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+small {
+  display: block;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+button {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+button:hover {
+  background: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  form {
+      width: 90%;
+      padding: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-text h1 {
+    font-size: 2.5rem; /* Decreases font size for smaller screens */
+    font-weight: 400;
+  }
+
+  .hero-text p {
+    font-size: 1.2rem; /* Reduces paragraph font size */
+  }
+
+  .hero-text .btn {
+    font-size: 1rem; /* Adjusts button text size */
+    padding: 8px 16px; /* Reduces button padding */
+  }
+}
