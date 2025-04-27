@@ -1,0 +1,118 @@
+* {
+    /* Reset margin and padding for all elements */
+    margin: 0;
+    padding: 0;
+    /* Use border-box model for all elements so padding and border are included in the element's total width/height */
+    box-sizing: border-box;
+}
+
+/* Basic styles for the root element and body */
+html {
+    /* Set base font size to 100%, which is 16px by default */
+    font-size: 100%;
+    /* Line height of 1.5 for readability */
+    line-height: 1.5;
+}
+
+body {
+    /* Apply the Google Font "Source Sans Pro" to the entire body */
+    font-family: 'Figtree', sans-serif;
+}
+
+/* Main container for the content section */
+section {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2em;
+}
+
+/* Styles for the aside (sidebar) element */
+aside {
+    flex: 1 1 25%;
+    background-color: #ededed;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.8);
+    padding: 1.25rem;
+    margin-left: 1rem;
+}
+
+aside p {
+    font-style: italic;
+    font-family: Georgia, 'Times New Roman', Times, serif;   
+}
+
+/* Styles for the article element */
+article {
+    flex: 1 1 65%; 
+}
+
+/* Ensure images are responsive */
+img {
+    max-width: 100%; 
+    height: auto;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    float: left;
+    padding-right: 1rem; 
+}
+
+/* Heading styles */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;   
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+/* Paragraph styles */
+p {
+    margin-bottom: 1.5rem;
+}
+
+/* Media Queries */
+
+/* Media query for screens smaller than or equal to 768px */
+@media (max-width: 768px) {
+
+    /* Stack the aside and article elements vertically on small screens */
+    section {
+        flex-direction: column;
+    }
+
+    /* Move aside to the bottom by changing its order */
+    aside {
+       flex: 1 1 100%;
+       margin-left: 0;
+       width: 80%;
+       margin: 0 auto;
+       padding: 1.5rem;
+    }
+
+    /* Make the article take up the full width */
+    article {
+        flex: 1 1 100%;
+    }
+}
+
+/* Media query for screens smaller than or equal to 480px (extra small screens) */
+@media (max-width: 480px) {
+
+    /* Decrease the font size of the main heading for smaller screens */
+    h1 {
+       font-size: 2rem; 
+    }
+
+    /* Decrease the font size of subheadings for smaller screens */
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    /* Decrease the font size of paragraphs for smaller screens */
+    p {
+        font-size: 0.9rem;
+    }
+}
