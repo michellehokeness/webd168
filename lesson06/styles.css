@@ -1,0 +1,99 @@
+/* Base font size for rem calculation */
+html {
+  font-size: 16px; /* 1rem = 16px, sets base font size for rem */
+}
+
+body {
+  background-color: rgb(210,220,157);
+  font-family: Georgia, serif; /* Sets the body font to Georgia, serif */
+  font-size: 1rem; /* 16px, base font size */
+  line-height: 1.75rem; /* 28px, sets the line height to 1.75 times the font size */
+  margin: 0 15% 0; /* 0px top and bottom margin, 15% margin on left and right */
+}
+
+header {
+  background-color: rgba(255, 255, 255, .5);
+  margin-top: 0; /* No margin at the top of the header */
+  padding: 3rem 1rem 2rem 1rem; /* 3rem padding on top, 1rem on left and right, 2rem on bottom */
+  text-align: center; /* Centers the text inside the header */
+}
+
+a {
+  text-decoration: none; /* Removes underline from all links */
+}
+
+a:link {
+  color: rgb(153,51,153);
+}
+
+a:visited {
+  color: #937393;
+}
+
+a:hover {
+  color: #c700f2;
+  background-color: #fff;
+}
+
+a:focus {
+  color: #c700f2;
+  background-color: #fff;
+}
+
+a:active {
+  background-color: #fff;
+  c:#ff00ff
+}
+
+h1 {
+  color: rgb(153,51,153);
+  font: bold 1.5rem Georgia, serif; /* 1.5rem (24px) font size, bold, using Georgia font */
+  text-shadow: 0.1rem 0.1rem 0.2rem gray; /* Light shadow effect for the text */
+}
+
+h2 {
+  color: rgb(204,102,0);
+  font-size: 1rem; /* 16px font size for h2 */
+  text-transform: uppercase; /* Transforms text to uppercase */
+  letter-spacing: 0.5rem; /* 8px letter spacing */
+  text-align: center; /* Centers the text */
+}
+
+dt {
+  font-weight: bold; /* Makes definition term bold */
+}
+
+strong {
+  font-style: italic; /* Makes text inside <strong> italic */
+}
+
+ul {
+  list-style-type: none; /* Removes default bullet points from list items */
+  margin: 0; /* Removes margin from unordered list */
+  padding: 0; /* Removes padding from unordered list */
+}
+
+#info p {
+  font-style: italic; /* Makes text inside paragraph italic */
+}
+
+.price {
+  font-family: Georgia, serif; /* Uses Georgia, serif font for price */
+  font-style: italic; /* Makes the price italic */
+}
+
+p.warning,
+sup {
+  font-size: 0.875rem; /* 14px, smaller font size for warning text and superscript */
+}
+
+.label {
+  font-weight: bold; /* Makes label text bold */
+  font-variant: small-caps; /* Displays the text in small caps */
+  font-style: normal; /* Makes the text normal (no italics) */
+}
+
+h2 + p {
+  text-align: center; /* Centers the text of the paragraph that follows an h2 */
+  font-style: italic; /* Makes the text italic */
+}
