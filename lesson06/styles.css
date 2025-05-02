@@ -4,7 +4,7 @@ html {
 }
 
 body {
-  background-color: rgb(210,220,157);
+  background: #d2dc9d url(images/blackgoose.png) no-repeat center 100px fixed; /* sets body background color, image, and placement */
   font-family: Georgia, serif; /* Sets the body font to Georgia, serif */
   font-size: 1rem; /* 16px, base font size */
   line-height: 1.75rem; /* 28px, sets the line height to 1.75 times the font size */
@@ -12,6 +12,7 @@ body {
 }
 
 header {
+  background: url(images/purpledot.png) repeat-x center top fixed, url(images/gooseshadow.png) 90% bottom no-repeat; /* sets header background color, images, and placement */
   background-color: rgba(255, 255, 255, .5);
   margin-top: 0; /* No margin at the top of the header */
   padding: 3rem 1rem 2rem 1rem; /* 3rem padding on top, 1rem on left and right, 2rem on bottom */
