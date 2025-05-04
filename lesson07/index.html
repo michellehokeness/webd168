@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css"
+    type="text/css">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Lato|Zilla+Slab:300,400">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Sea Turtles</title>
+
+</head>
+
+<body>
+
+  <header>
+    <h1>Sea Turtles</h1>
+    <p>Several different species of sea
+      turtles grace our ocean waters, from
+      the shallow seagrass beds of the
+      Indian Ocean, to the colorful reefs of
+      the Coral Triangle, and even the sandy
+      beaches of the Eastern Pacific.</p>
+  </header>
+
+  <nav class="navbar">
+    <button class="hamburger" id="hamburger"
+      aria-label="Toggle navigation">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <ul>
+      <li><a href="#green">Green</a></li>
+      <li><a
+          href="#loggerhead">Loggerhead</a>
+      </li>
+      <li><a
+          href="#leatherback">Leatherback</a>
+      </li>
+      <li><a href="#hawksbill">Hawksbill</a>
+      </li>
+      <li><a href="#olive">Olive Ridley</a>
+      </li>
+      <li><a href="#kemp">Kemp's Ridley</a>
+      </li>
+    </ul>
+  </nav>
+
+  <main class="cards">
+    <section id="green" class="card">
+      <a href="#green">
+        <img
+          src="images/green-sea-turtle.jpg"
+          alt="A Green Sea Turtle">
+        <div class="card-content">
+          <h2>Green Sea Turtle</h2>
+          <p>The green turtle is one of the
+            largest sea turtles and the only
+            herbivore among the different
+            species.</p>
+        </div>
+      </a>
+    </section>
+
+    <section id="loggerhead" class="card">
+      <a href="#loggerhead">
+        <img src="images/loggerhead.jpg"
+          alt="Loggerhead Sea Turtle">
+        <div class="card-content">
+          <h2>Loggerhead Sea Turtle</h2>
+          <p>Loggerhead turtles are named
+            for their large heads that
+            support powerful jaw muscles.
+          </p>
+        </div>
+      </a>
+    </section>
+
+    <section id="leatherback" class="card">
+      <a href="#leatherback">
+        <img src="images/leatherback.jpg"
+          alt="Leatherback Sea Turtle"
+          class="thumbnail">
+        <div class="card-content">
+          <h2>Leatherback Sea Turtle</h2>
+          <p>Leatherbacks are the largest
+            sea turtle species and also one
+            of the most migratory.</p>
+        </div>
+      </a>
+    </section>
+
+    <section id="hawksbill" class="card">
+      <a href="#hawksbill">
+        <img src="images/hawksbill.jpg"
+          alt="Hawksbill Sea Turtle">
+        <div class="card-content">
+          <h2>Hawksbill Sea Turtle</h2>
+          <p>Hawksbills are named for their
+            narrow, pointed beak.</p>
+        </div>
+      </a>
+    </section>
+
+    <section id="olive" class="card">
+      <a href="#olive">
+        <img
+          src="images/olive-ridley-sea-turtle.jpg"
+          alt="An Olive Ridley Sea Turtle">
+        <div class="card-content">
+          <h2>Olive Ridley Sea Turtle</h2>
+          <p>The name for this sea turtle is
+            tied to the color of its
+            shell—an olive green hue.</p>
+        </div>
+      </a>
+    </section>
+
+    <section id="kemp" class="card">
+      <a href="#kemp">
+        <img src="images/kemps-ridley.jpg"
+          alt="Kemp's Ridley Sea Turtle">
+        <div class="card-content">
+          <h2>Kemp's Ridley Sea Turtle</h2>
+          <p>The Kemp's Ridley turtle is the
+            world's most endangered sea
+            turtle.</p>
+        </div>
+      </a>
+    </section>
+  </main>
+  <footer>
+    <p>Sea Turtles - All Rights Reserved &copy; 2025 | <span><i class="fa-brands fa-square-facebook fa-lg"></i><i class="fa-brands fa-square-instagram fa-lg"></i><i class="fa-brands fa-square-x-twitter fa-lg"></i><i class="fa-brands fa-linkedin fa-lg"></i></span></p>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.querySelector('.hamburger');
+      const navMenu = document.querySelector('.navbar ul');
+
+      hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        document.body.classList.toggle('menu-open'); // Optional: if you want to affect other styles
+      });
+    });
+  </script>
+
+</body>
+
+</html>
