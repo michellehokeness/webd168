@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Tailwind CSS Project</title>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1" />
+    <!-- This loads a custom font (Raleway) from Google Fonts so we can use it in our site. -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+
+            scroll-padding-top: 5rem;
+            /* offset for fixed header */
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800 font-[Raleway]">
+
+    <!-- Header -->
+    <header
+        class="fixed top-0 right-0 left-0 z-50 relative bg-cover bg-center"
+        style="background-image: url('header.jpg');">
+
+
+        <div
+            class="container mx-auto p-4 flex justify-between items-center text-yellow-400">
+
+            <!-- SVG Logo -->
+            <svg class="w-auto h-10 md:h-12 fill-yellow-400" 
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 200 40" aria-label="My Company Logo">
+                <text x="0" y="30" font-family="Raleway, sans-serif"
+                    font-weight="600" font-size="24">
+                    My Company
+                </text>
+            </svg>
+
+            <!-- Mobile Hamburger Menu Button -->
+            <!-- This button is only visible on small screens (hidden on md and larger) -->
+            <!-- It toggles the visibility of the mobile navigation menu -->
+            <button id="menu-toggle"
+                class="block md:hidden text-yellow-400 focus:outline-none"
+                aria-label="Toggle navigation"
+                aria-expanded="false"
+                aria-controls="mobile-menu">
+                ☰
+            </button>
+
+            <!-- Nav Links (desktop) -->
+            <nav id="nav-menu"
+                class="hidden md:flex gap-4 text-sm md:text-base"
+                role="navigation">
+                <a href="#"
+                    class="bg-blue-400 hover:bg-white/70 text-black py-2 px-4 rounded transition duration-200">Home</a>
+                <a href="#"
+                    class="bg-white/50 hover:bg-white/70 text-black py-2 px-4 rounded transition duration-200">Our
+                    Clients</a>
+                <a href="#"
+                    class="bg-white/50 hover:bg-white/70 text-black py-2 px-4 rounded transition duration-200">About
+                    Us</a>
+                <a href="#"
+                    class="bg-white/50 hover:bg-white/70 text-black py-2 px-4 rounded transition duration-200">Careers</a>
+            </nav>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-menu"
+            class="md:hidden font-semibold px-4 pb-4 space-y-2"
+            role="navigation">
+            <a href="#"
+                class="block hover:text-white">Home</a>
+            <a href="#" class="block hover:text-white">Our
+                Clients</a>
+            <a href="#" class="block hover:text-white">About
+                Us</a>
+            <a href="#"
+                class="block hover:text-white">Careers</a>
+        </div>
+
+        <!-- Hero Text -->
+        <div class="mt-12 text-center text-white">
+            <h1 class="text-5xl font-semibold">We do great
+                things</h1>
+            <h2 class="text-3xl mt-4">Donec pulvinar
+                ullamcorper metus
+            </h2>
+            <a href="#"
+                class="inline-block bg-blue-400 text-black py-2 px-6 my-6 rounded hover:bg-white/50">Learn
+                More</a>
+        </div>
+    </header>
+    <main>
+        <section id="info" class="scroll-mt-20 py-16">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-semibold">
+                        Graeco
+                        feugiat intellegam at vix</h2>
+                </div>
+
+                <div
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div>
+                        <p class="text-base mb-4">
+                            Mei te possit instructior, idque
+                            delenit qui et, dicit ludus
+                            commune vix ad. Ea modo dicam
+                            cetero mel, case disputationi at
+                            est. Ad nam adipisci dignissim
+                            posidonium, eius reque
+                            temporibus ne mea. Vero antiopam
+                            ea vim. Ei timeam electram vix.
+                            Eam at tollit erroribus, ea eum
+                            idque legere epicuri. Sed quot
+                            legere minimum cu, ex mei
+                            fastidii mandamus intellegam,
+                            error consul ut per.
+                        </p>
+                        <a href="#"
+                            class="inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-400">More
+                            info</a>
+
+                    </div>
+                    <!-- Card 2 -->
+                    <div>
+                        <p class="text-base mb-4">
+                            Mei te possit instructior, idque
+                            delenit qui et, dicit ludus
+                            commune vix ad. Ea modo dicam
+                            cetero mel, case disputationi at
+                            est. Ad nam adipisci dignissim
+                            posidonium, eius reque
+                            temporibus ne mea. Vero antiopam
+                            ea vim. Ei timeam electram vix.
+                            Eam at tollit erroribus, ea eum
+                            idque legere epicuri. Sed quot
+                            legere minimum cu, ex mei
+                            fastidii mandamus intellegam,
+                            error consul ut per.
+                        </p>
+                        <a href="#"
+                            class="inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-400">More
+                            info</a>
+
+                    </div>
+                    <!-- Card 3 -->
+                    <div>
+                        <p class="text-base mb-4">
+                            Mei te possit instructior, idque
+                            delenit qui et, dicit ludus
+                            commune vix ad. Ea modo dicam
+                            cetero mel, case disputationi at
+                            est. Ad nam adipisci dignissim
+                            posidonium, eius reque
+                            temporibus ne mea. Vero antiopam
+                            ea vim. Ei timeam electram vix.
+                            Eam at tollit erroribus, ea eum
+                            idque legere epicuri. Sed quot
+                            legere minimum cu, ex mei
+                            fastidii mandamus intellegam,
+                            error consul ut per.
+                        </p>
+                        <a href="#"
+                            class="inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-400">More
+                            info</a>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div
+                class="flex flex-col sm:flex-row justify-between gap-6">
+                <!-- Newsletter Form -->
+                <div class="sm:w-1/2">
+                    <form>
+                        <label for="exampleEmailInput"
+                            class="text-sm">Sign up for our
+                            newsletter</label>
+                        <div class="mt-2 flex">
+                            <input
+                                class="w-full px-4 py-2 rounded-l-md text-gray-700"
+                                type="email"
+                                placeholder="test@mailbox.com"
+                                id="exampleEmailInput"
+                                aria-label="Email address" />
+                            <input
+                                class="bg-blue-500 text-black px-4 py-2 rounded-r-md hover:bg-blue-400 cursor-pointer"
+                                type="submit" value="Submit"
+                                aria-label="Submit form" />
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Footer Text -->
+                <div
+                    class="md:w-1/2 text-sm md:text-right text-center mt-4 md:mt-0">
+                    <p>© Marianne Gibson,
+                        <!-- Placeholder where the current year will be filled in with JavaScript. -->
+                        <span id="year"></span>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript: Mobile Nav Toggle + Dynamic Year -->
+    <script>
+        const toggle = document.getElementById("menu-toggle");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        toggle.addEventListener("click", () => {
+            const isHidden = mobileMenu.classList.toggle("hidden");
+            toggle.setAttribute("aria-expanded", !isHidden);
+        });
+
+        // Set current year
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+</body>
+
+</html>
