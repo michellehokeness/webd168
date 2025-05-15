@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&display=swap');
+
+$colors: (
+    primary: #9fc7b4,
+    accent: #569477,
+    footer: #fff
+);
+
+$font-main: 'Quicksand', 'sans-serif';
+
+$tablet: 798px;
+
+@mixin tablet {
+  @media (max-width: #{$tablet}) {
+    @content;
+  }
+}
+
+$mobile: 575px;
+
+@mixin mobile {
+  @media (max-width: #{$mobile}) {
+    @content;
+  }
+}
+
+@function color($color-name) {
+  @return map-get($colors, $color-name);
+}
+
+body, html {
+  height: 100%;
+}
+body {
+  font-family: $font-main;
+  margin: 0;
+
+  #bg {
+    clip-path: polygon(15% 0, 85% 0, 100% 9%, 100% 100%, 85% 100%, 15% 100%, 0 100%, 0 9%);
+    background-color: color(primary);
+
+    @include tablet {
+      clip-path: polygon(15% 0, 85% 0, 100% 3%, 100% 97%, 85% 100%, 15% 100%, 0 97%, 0 3%);
+    }
+  }
+  
+  header {
+    background-color: color(primary);
+  }
+
+  .img{
+    background-color: color(accent);
+    clip-path: polygon(15% 0, 85% 0, 100% 9%, 100% 100%, 85% 100%, 15% 100%, 0 100%, 0 9%);
+
+    @include tablet {
+      clip-path: polygon(15% 0, 85% 0, 100% 3%, 100% 97%, 85% 100%, 15% 100%, 0 97%, 0 3%);
+    }
+  }
+
+  img {
+    @include mobile {
+      width: 50%;
+      height: 50%;
+    }
+  }
+
+  img:first-of-type {
+    padding-right: 20px;
+
+    @include tablet {
+      padding-right: 0;
+      padding-bottom: 20px;
+    }
+  }
+}
+main section {
+  @include mobile {
+    text-align: center;
+    padding: 10px;
+
+      ol {
+        padding-left: 1.2em;
+        list-style-position: inside;
+      }
+      ol li {
+        text-align: left;
+        padding-left: 100px;
+      }
+  }
+}
+footer {
+  background-color: color(primary);
+  color: color(footer);
+  height: 100px;
+  padding-top: 20px;
+  text-align: center; 
+}
+
+  
+
+

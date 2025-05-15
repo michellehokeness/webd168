@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&display=swap");
+body, html {
+  height: 100%;
+}
+
+body {
+  font-family: "Quicksand", "sans-serif";
+  margin: 0;
+}
+body #bg {
+  -webkit-clip-path: polygon(15% 0, 85% 0, 100% 9%, 100% 100%, 85% 100%, 15% 100%, 0 100%, 0 9%);
+          clip-path: polygon(15% 0, 85% 0, 100% 9%, 100% 100%, 85% 100%, 15% 100%, 0 100%, 0 9%);
+  background-color: #9fc7b4;
+}
+@media (max-width: 798px) {
+  body #bg {
+    -webkit-clip-path: polygon(15% 0, 85% 0, 100% 3%, 100% 97%, 85% 100%, 15% 100%, 0 97%, 0 3%);
+            clip-path: polygon(15% 0, 85% 0, 100% 3%, 100% 97%, 85% 100%, 15% 100%, 0 97%, 0 3%);
+  }
+}
+body header {
+  background-color: #9fc7b4;
+}
+body .img {
+  background-color: #569477;
+  -webkit-clip-path: polygon(15% 0, 85% 0, 100% 9%, 100% 100%, 85% 100%, 15% 100%, 0 100%, 0 9%);
+          clip-path: polygon(15% 0, 85% 0, 100% 9%, 100% 100%, 85% 100%, 15% 100%, 0 100%, 0 9%);
+}
+@media (max-width: 798px) {
+  body .img {
+    -webkit-clip-path: polygon(15% 0, 85% 0, 100% 3%, 100% 97%, 85% 100%, 15% 100%, 0 97%, 0 3%);
+            clip-path: polygon(15% 0, 85% 0, 100% 3%, 100% 97%, 85% 100%, 15% 100%, 0 97%, 0 3%);
+  }
+}
+@media (max-width: 575px) {
+  body img {
+    width: 50%;
+    height: 50%;
+  }
+}
+body img:first-of-type {
+  padding-right: 20px;
+}
+@media (max-width: 798px) {
+  body img:first-of-type {
+    padding-right: 0;
+    padding-bottom: 20px;
+  }
+}
+
+@media (max-width: 575px) {
+  main section {
+    text-align: center;
+    padding: 10px;
+  }
+  main section ol {
+    padding-left: 1.2em;
+    list-style-position: inside;
+  }
+  main section ol li {
+    text-align: left;
+    padding-left: 100px;
+  }
+}
+
+footer {
+  background-color: #9fc7b4;
+  color: #fff;
+  height: 100px;
+  padding-top: 20px;
+  text-align: center;
+}/*# sourceMappingURL=main.css.map */
