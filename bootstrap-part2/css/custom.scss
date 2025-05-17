@@ -1,0 +1,58 @@
+$colors: (
+    primary: #9fc7b4,
+    accent: #565656,
+    stars: #5dbd8f,
+    ratingTable: #c3dfd2
+);
+
+@function color($color-name) {
+  @return map.get($colors, $color-name);
+}
+
+nav {
+  background-color: color(accent);
+}
+
+header {
+    background-color: color(primary);
+  }
+
+caption {
+  caption-side: top;
+}
+
+thead {
+  background-color: color(ratingtable);
+}
+
+/* Change the color of bootstrap radio button when selected */
+.form-check-input[type="radio"]:checked, .btn-primary {
+  background-color: #66af8d; 
+  border-color: #6dbb97;
+}
+
+.btn-primary:hover {
+  background-color: rgb(116 174 148 / 80%);
+  border-color: #3dc183;
+}
+
+.click-btn {
+  font-size: 1em;
+  padding: 3px;
+}
+
+/* change focus ring color */
+.form-check-input[type="radio"]:focus {
+  box-shadow: 0 0 0 0.25rem rgb(86 148 119 / 50%); /* 50% transparency of color above */
+}
+
+footer {
+  background-color: color(accent);
+}
+
+@media (width <= 768px) {
+  section {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
