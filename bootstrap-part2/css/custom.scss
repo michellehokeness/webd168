@@ -14,8 +14,12 @@ nav {
 }
 
 header {
-    background-color: color(primary);
-  }
+  background-color: color(primary); 
+}
+
+p.lead {
+  line-height: 1.5;
+}
 
 caption {
   caption-side: top;
