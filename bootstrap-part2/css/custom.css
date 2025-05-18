@@ -15,13 +15,13 @@ thead {
 }
 
 /* Change the color of bootstrap radio button when selected */
-.form-check-input[type=radio]:checked, .btn-primary {
+.form-check-input[type="radio"]:checked, .btn-primary {
   background-color: #66af8d;
   border-color: #6dbb97;
 }
 
 .btn-primary:hover {
-  background-color: rgba(116, 174, 148, 0.8);
+  background-color: rgba(116, 174, 148 / 80%);
   border-color: #3dc183;
 }
 
@@ -31,15 +31,15 @@ thead {
 }
 
 /* change focus ring color */
-.form-check-input[type=radio]:focus {
-  box-shadow: 0 0 0 0.25rem rgba(86, 148, 119, 0.5); /* 50% transparency of color above */
+.form-check-input[type="radio"]:focus {
+  box-shadow: 0 0 0 0.25rem rgba(86, 148, 119 / 50%); /* 50% transparency of color above */
 }
 
 footer {
   background-color: #565656;
 }
 
-@media (max-width: 768px) {
+@media (max-width <= 768px) {
   section {
     padding-top: 1rem;
     padding-bottom: 1rem;

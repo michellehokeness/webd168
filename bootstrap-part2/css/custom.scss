@@ -36,7 +36,7 @@ thead {
 }
 
 .btn-primary:hover {
-  background-color: rgb(116 174 148 / 80%);
+  background-color: rgba(116 174 148 / 80%);
   border-color: #3dc183;
 }
 
@@ -47,7 +47,7 @@ thead {
 
 /* change focus ring color */
 .form-check-input[type="radio"]:focus {
-  box-shadow: 0 0 0 0.25rem rgb(86 148 119 / 50%); /* 50% transparency of color above */
+  box-shadow: 0 0 0 0.25rem rgba(86 148 119 / 50%); /* 50% transparency of color above */
 }
 
 footer {

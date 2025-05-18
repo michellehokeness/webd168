@@ -7645,6 +7645,7 @@ textarea.form-control-lg {
 
 .fw-bolder {
   font-weight: bolder !important;
+  margin-top: 10px;
 }
 
 .lh-1 {
@@ -11291,8 +11292,8 @@ html {
 }
 
 header {
-  padding-top: 9.5rem;
-  padding-bottom: 6rem;
+  padding-top: 5rem;
+  padding-bottom: 2rem;
 }
 
 section {
