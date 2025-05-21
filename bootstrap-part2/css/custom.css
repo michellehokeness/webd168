@@ -6,6 +6,20 @@ header {
   background-color: #9fc7b4;
 }
 
+/* set img to 50% opacity */
+.fade-img {
+  opacity: 0.5;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.fade-img:hover {
+  opacity: 1;
+}
+
+p.lead {
+  line-height: 1.5;
+}
+
 caption {
   caption-side: top;
 }
@@ -15,13 +29,13 @@ thead {
 }
 
 /* Change the color of bootstrap radio button when selected */
-.form-check-input[type="radio"]:checked, .btn-primary {
+.form-check-input[type=radio]:checked, .btn-primary {
   background-color: #66af8d;
   border-color: #6dbb97;
 }
 
 .btn-primary:hover {
-  background-color: rgba(116, 174, 148 / 80%);
+  background-color: #95ceb3;
   border-color: #3dc183;
 }
 
@@ -31,15 +45,15 @@ thead {
 }
 
 /* change focus ring color */
-.form-check-input[type="radio"]:focus {
-  box-shadow: 0 0 0 0.25rem rgba(86, 148, 119 / 50%); /* 50% transparency of color above */
+.form-check-input[type=radio]:focus {
+  box-shadow: 0 0 0 0.25rem rgba(86, 148, 119, 0.5); /* 50% transparency of color above */
 }
 
 footer {
   background-color: #565656;
 }
 
-@media (max-width <= 768px) {
+@media (width <= 768px) {
   section {
     padding-top: 1rem;
     padding-bottom: 1rem;
