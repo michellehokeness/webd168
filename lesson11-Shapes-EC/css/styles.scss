@@ -1,6 +1,14 @@
 body {
   box-sizing: border-box;
   font-family: "Henny Penny", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1415px;
+  margin: 0 auto; /* centers the content */
+  padding: 0 1rem;
 }
 
 header {
@@ -10,8 +18,8 @@ header {
 }
 
 p {
-  margin-left: 20vw;
-  padding-right: 150px;
+  margin: 0;
+  padding: 0 2rem 1rem 2rem;
   text-align: left;
 }
 
@@ -20,13 +28,16 @@ p:last-of-type {
 }
 
 img.cat {
-  margin-bottom: 0;
-  shape-outside: polygon(265px 35px, 61.3% 118px, 71.3% 19.07%, 74.54% 26.17%, 84.31% 30.37%, 79.51% 36.63%, 77.85% 39.5%, 78.66% 48.18%, 71.42% 54.41%, 70.18% 64.42%, 77.37% 71.32%, 62.1% 74.53%, 43.15% 75.04%, 65.79% 77.74%, 60.32% 82.16%, 42.58% 90.77%, 46.59% 97.77%, 27.5% 85.54%, 75px 61.78%); 
-}
-
-img {
-  width: 36vw;
   float: left;
   margin: 1em;
+  width: 35%; /* scales within container */
+  height: auto;
+  shape-outside: polygon(1px 56px, 10.85% 96px, 15.76% 13.42%, 25.97% 18.21%, 46.85% 18.34%, 51.38% 18.32%, 56.89% 19.25%, 71.88% 22.35%, 73.88% 25.64%, 76.97% 27.69%, 84.31% 30.37%, 79.51% 36.63%, 77.85% 39.5%, 78.66% 48.18%, 71.42% 54.41%, 70.18% 64.42%, 77.37% 71.32%, 62.1% 74.53%, 43.15% 75.04%, 65.79% 77.74%, 60.32% 82.16%, 42.58% 90.77%, 46.59% 97.77%, 27.5% 85.54%, 75px 61.78%); 
 }
+
+// img {
+//   width: 36vw;
+//   float: left;
+//   margin: 1em;
+// }
 
