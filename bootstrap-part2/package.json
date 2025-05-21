@@ -1,0 +1,17 @@
+{
+  "name": "bootstrap-part2",
+  "version": "1.0.0",
+  "description": "portfolio",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass css/custom.scss css/custom.css --style=expanded",
+    "sass:watch": "sass --watch css/custom.scss:css/custom.css --style=expanded",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Michelle Hokeness",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.89.0"
+  }
+}
