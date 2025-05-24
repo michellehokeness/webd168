@@ -6,6 +6,10 @@ header {
   background-color: #9fc7b4;
 }
 
+header.text-white {
+  color: #2B2B2B;
+}
+
 /* set img to 50% opacity */
 .fade-img {
   opacity: 0.5;
