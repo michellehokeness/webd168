@@ -1,5 +1,5 @@
 nav {
-  background-color: #565656;
+  background-color: #2B2B2B;
 }
 
 header {
@@ -16,26 +16,45 @@ header {
   opacity: 1;
 }
 
+h2.leisure {
+  margin-top: 80px;
+}
+
+img.cat {
+  float: right;
+  margin: 1em;
+  width: 35%;
+  height: auto;
+  shape-outside: polygon(26px 24px, 95.81% 4.85%, 97.85% 91.1%, 152px 93.87%, 51.19% 85.35%, 34.13% 70.4%, 40.31% 57.36%, 44.16% 48.64%, 18.45% 34.99%, 11.14% 29.05%);
+}
+
 p.lead {
   line-height: 1.5;
 }
 
 caption {
   caption-side: top;
+  color: #6b727b;
 }
 
 thead {
   background-color: #c3dfd2;
 }
 
+section h3 {
+  font-size: 20px;
+}
+
 /* Change the color of bootstrap radio button when selected */
 .form-check-input[type=radio]:checked, .btn-primary {
-  background-color: #66af8d;
-  border-color: #6dbb97;
+  background-color: #9fc7b4;
+  border-color: #9fc7b4;
+  font-size: 1.1em;
+  font-weight: bold;
 }
 
 .btn-primary:hover {
-  background-color: #95ceb3;
+  background-color: #bfdacd;
   border-color: #3dc183;
 }
 
@@ -50,7 +69,7 @@ thead {
 }
 
 footer {
-  background-color: #565656;
+  background-color: #2B2B2B;
 }
 
 @media (width <= 768px) {
