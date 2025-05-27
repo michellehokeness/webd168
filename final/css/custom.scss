@@ -1,0 +1,178 @@
+@use "sass:map";
+
+$colors: (
+    primary: #9fc7b4,
+    accent: #2B2B2B,
+    theme: #fafafc,
+    ratingTable: #c4a6a6
+);
+
+@function color($color-name) {
+  @return map.get($colors, $color-name);
+}
+
+nav {
+  background-color: color(accent);
+}
+
+header {
+  background-image: url(../assets/CatLace-304px-304px.png);
+  background-repeat: repeat; // repeats the image
+  margin-top: 150px;
+  padding-top: 50px;
+}
+
+header.text-white {
+  color: #fff;
+}
+
+header h1, header p {
+  margin: 0;
+  background-color: rgba(13, 13, 13, 0.8);
+
+}
+
+header h1 {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+header p {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.logo {
+  margin-right: 20px;
+}
+
+/* set img to 50% opacity */
+.fade-img {
+  opacity: 0.5;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.fade-img:hover {
+  opacity: 1;
+}
+
+h2.leisure {
+  margin-top: 80px;
+}
+
+.bambi {
+  display: block;
+  float: right;
+  margin: 1em;
+  width: 90%;
+  height: auto;
+  shape-outside: polygon(338px 195px, 90.86% 14.29%, 84.06% 43.96%, 69.79% 41.33%, 51.22% 49.18%, 49.49% 42.47%, 40.4% 36.5%, 39.94% 32.44%);
+}
+
+img.cat {
+  display: block;
+  float: right;
+  margin: 1em;
+  width: 35%;
+  height: auto;
+  shape-outside: polygon(26px 24px, 95.81% 4.85%, 97.85% 91.1%, 152px 93.87%, 51.19% 85.35%, 34.13% 70.4%, 40.31% 57.36%, 44.16% 48.64%, 18.45% 34.99%, 11.14% 29.05%);
+}
+
+p.lead {
+  line-height: 1.5;
+}
+
+caption {
+  caption-side: top;
+  color: #6b727b;
+}
+
+thead {
+  background-color: color(ratingTable);
+}
+
+section h3 {
+  font-size: 20px;
+}
+
+/* Change the color of bootstrap radio button when selected */
+.form-check-input[type="radio"]:checked, .btn-primary {
+  background-color: #b68181; 
+  border-color: #ce7c8c;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: color(ratingTable);
+  border-color: #ce405c;
+}
+
+.click-btn {
+  font-size: 1em;
+  padding: 3px;
+}
+
+/* change focus ring color */
+.form-check-input[type="radio"]:focus {
+  box-shadow: 0 0 0 0.25rem rgba(227, 151, 201, 0.5); /* 50% transparency of color above */
+}
+
+footer {
+  color: #fff;
+  background-color: color(accent);
+  font-size: 1.2em;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.flex-container > div {
+  margin: 10px;
+  padding: 20px;
+}
+
+.copyright p {
+  padding-bottom: 28px;
+}
+
+.line {
+  margin: 0 10px;
+}
+
+.social-icons i {
+  margin: 0 10px; /* adds horizontal space on both sides */
+}
+
+.social-icons a {
+  color: #fff;
+}
+
+
+@media (width <= 768px) {
+  section {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  img.cat {
+    width: 45%;
+    min-width: 250px;
+    float: none;
+    margin: 1em auto;
+    display: block;
+  }
+}
+
+@media (width <= 511px) {
+  .logo {
+    content: url(../assets/header-logo-150x150-small-screen.png);
+  } 
+}
