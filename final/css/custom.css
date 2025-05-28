@@ -5,6 +5,7 @@ nav {
 header {
   background-image: url(../assets/CatLace-304px-304px.png);
   background-repeat: repeat;
+  background-position: center;
   margin-top: 150px;
   padding-top: 50px;
 }
@@ -30,7 +31,7 @@ header p {
   padding: 5px;
 }
 
-.logo {
+.logo-header {
   margin-right: 20px;
 }
 
@@ -141,21 +142,68 @@ footer {
   color: #fff;
 }
 
-@media (width <= 768px) {
-  section {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+/* Responsive styles mid screen */
+@media (min-width: 425px) and (max-width: 585.98px) {
+  /* stack the footer blocks vertically so icons sit on own line*/
+  .flex-container {
+    flex-direction: column;
+    align-items: center;
   }
-  img.cat {
-    width: 45%;
-    min-width: 250px;
-    float: none;
-    margin: 1em auto;
-    display: block;
+  .copyright p {
+    text-align: center;
+  }
+  .social-icons {
+    display: inline-flex;
+    gap: 0.75rem;
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+  .line {
+    display: none;
   }
 }
-@media (width <= 511px) {
-  .logo {
-    content: url(../assets/header-logo-150x150-small-screen.png);
+/* Responsive styles small screen */
+@media (width <= 430px) {
+  body {
+    flex-direction: column;
+    text-align: center;
+    margin: 0;
+    width: 100%;
+  }
+  header {
+    margin: 0;
+    margin-top: 150px;
+    padding-top: 50px;
+  }
+  .logo-header {
+    width: 90%;
+    height: auto;
+  }
+  section {
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+  }
+  img.cat {
+    min-width: 250px;
+    width: 45%;
+    margin: 1em auto;
+    float: none;
+    display: block;
+  }
+  footer {
+    width: 100%;
+    min-width: 380px;
+  }
+  .flex-container {
+    flex-direction: column;
+  }
+  .logo-footer {
+    content: url(../assets/footer-logo.svg);
+    width: 100%;
+    height: 150px;
+    margin: 0 auto;
+  }
+  .line {
+    display: none;
   }
 }/*# sourceMappingURL=custom.css.map */
