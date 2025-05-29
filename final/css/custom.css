@@ -1,8 +1,11 @@
 @charset "UTF-8";
+/* needed to use the colors function */
+/* Navigation styles */
 nav {
   background-color: #2B2B2B;
 }
 
+/* Header styles */
 header {
   background-image: url(../assets/CatLace-304px-304px.png);
   background-repeat: repeat;
@@ -14,7 +17,7 @@ header {
 header a.btn {
   background-color: rgba(13, 13, 13, 0.8);
   color: #fff;
-  font-size: large;
+  font-size: 1.125rem;
   font-weight: bold;
   padding: 10px;
 }
@@ -57,6 +60,7 @@ header p {
   opacity: 1;
 }
 
+/* About section styles */
 h2.leisure {
   margin-top: 80px;
 }
@@ -74,16 +78,10 @@ p.lead {
   line-height: 1.5;
 }
 
+/* Table styles */
 caption {
   caption-side: top;
   color: #6b727b;
-}
-
-form {
-  /* 1 — treat the form as a regular block */
-  margin: 0;
-  text-align: left;
-  display: block;
 }
 
 thead {
@@ -91,11 +89,19 @@ thead {
 }
 
 section h3 {
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 section#about ul {
   list-style-type: none;
+}
+
+/* Form styles */
+form {
+  /* 1 — treat the form as a regular block */
+  margin: 0;
+  text-align: left;
+  display: block;
 }
 
 /* Change the color of bootstrap radio button when selected */
@@ -121,10 +127,11 @@ section#about ul {
   box-shadow: 0 0 0 0.25rem rgba(227, 151, 201, 0.5); /* 50% transparency of color above */
 }
 
+/* Footer styles */
 footer {
   color: #fff;
   background-color: #2B2B2B;
-  font-size: 1.2em;
+  font-size: 1.2rem;
 }
 
 .logo-footer {
