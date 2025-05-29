@@ -1,3 +1,4 @@
+@charset "UTF-8";
 nav {
   background-color: #2B2B2B;
 }
@@ -8,6 +9,14 @@ header {
   background-position: center;
   margin-top: 150px;
   padding-top: 50px;
+}
+
+header a.btn {
+  background-color: rgba(13, 13, 13, 0.8);
+  color: #fff;
+  font-size: large;
+  font-weight: bold;
+  padding: 10px;
 }
 
 header.text-white {
@@ -22,13 +31,14 @@ header h1, header p {
 header h1 {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  padding-top: 15px;
 }
 
 header p {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   margin-bottom: 10px;
-  padding: 5px;
+  padding: 5px 5px 15px 5px;
 }
 
 .logo-header {
@@ -75,6 +85,10 @@ thead {
 
 section h3 {
   font-size: 20px;
+}
+
+section#about ul {
+  list-style-type: none;
 }
 
 /* Change the color of bootstrap radio button when selected */
@@ -162,11 +176,15 @@ footer {
 }
 /* Responsive styles small screen */
 @media (width <= 430px) {
+  html {
+    scroll-padding-top: 175px;
+  }
   body {
     flex-direction: column;
     text-align: center;
     margin: 0;
     width: 100%;
+    min-width: 380px;
   }
   header {
     margin: 0;
@@ -190,12 +208,95 @@ footer {
   }
   footer {
     width: 100%;
-    min-width: 380px;
   }
   .flex-container {
     flex-direction: column;
   }
   .line {
     display: none;
+  }
+}
+/* ---------------------------------------------
+---------  Styles for the Gallery --------------
+---------------------------------------------- */
+/* image styles */
+main.gallery-grid {
+  /* one column by default (phones / tablets) */
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin: 0 auto;
+  padding: 10px;
+  margin-block: 4rem;
+  width: 100%;
+  min-width: 380px;
+}
+
+section {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 0 15px 0 15px;
+}
+
+section p {
+  padding: 20px;
+}
+
+/* Container for cards */
+.my-card {
+  background: #fff;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin: 25px;
+  padding: 10px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1350px) {
+  /* 1. keep the whole image visible */
+  .my-card img.gallery {
+    width: 100%;
+    height: auto;
+    -o-object-fit: contain;
+       object-fit: contain;
+    -o-object-position: center center;
+       object-position: center center;
+    display: block;
+    margin-inline: auto;
+  }
+}
+@media (min-width: 992px) {
+  main.gallery-grid {
+    /* two equal columns on desktop */
+    grid-template-columns: 1fr 1fr;
+  }
+}
+/* -------------------------------------------------------
+   --------- Extra-small screens  ≤ 430 px ---------------
+   ------------------------------------------------------ */
+@media only screen and (max-width: 430px) {
+  main.gallery-grid {
+    /* one column on mobile */
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+  }
+  /* Make the card itself fill the viewport width */
+  .my-card {
+    width: 100%;
+  }
+  /* Keep the whole picture visible and centred */
+  .my-card img.gallery {
+    width: 100%;
+    height: auto;
+    -o-object-fit: contain;
+       object-fit: contain;
+    -o-object-position: center center;
+       object-position: center center;
+    display: block;
   }
 }/*# sourceMappingURL=custom.css.map */

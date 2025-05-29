@@ -23,6 +23,14 @@ header {
   padding-top: 50px;
 }
 
+header a.btn {
+  background-color: rgba(13, 13, 13, 0.8);
+  color: #fff;
+  font-size: large;
+  font-weight: bold;
+  padding: 10px;
+}
+
 header.text-white {
   color: #fff;
 }
@@ -36,13 +44,14 @@ header h1, header p {
 header h1 {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  padding-top: 15px;
 }
 
 header p {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   margin-bottom: 10px;
-  padding: 5px;
+  padding: 5px 5px 15px 5px;
 }
 
 .logo-header { // gives space for svg image
@@ -91,6 +100,10 @@ section h3 {
   font-size: 20px;
 }
 
+section#about ul {
+  list-style-type: none;
+}
+
 /* Change the color of bootstrap radio button when selected */
 .form-check-input[type="radio"]:checked, .btn-primary {
   background-color: #b68181; 
@@ -119,7 +132,7 @@ footer {
   background-color: color(accent);
   font-size: 1.2em;
 }
-
+ 
 .logo-footer { // gives space for svg image
   width: 100%;
   height: auto;
@@ -177,11 +190,15 @@ footer {
 
 /* Responsive styles small screen */
 @media  (width <= 430px) {
+    html { // when menu item selected on small screens-pushes content down so nothing is cut off
+    scroll-padding-top: 175px;
+    }
     body {
       flex-direction: column;
       text-align: center;
       margin: 0;
       width: 100%;
+      min-width: 380px;
     }
     header {
       margin: 0;
@@ -205,8 +222,7 @@ footer {
       display: block;
     }
     footer {
-      width: 100%;
-      min-width: 380px
+      width: 100%; 
     }
     .flex-container {
       flex-direction: column;
@@ -215,3 +231,92 @@ footer {
       display: none;
     }
 }
+
+/* ---------------------------------------------
+---------  Styles for the Gallery --------------
+---------------------------------------------- */
+
+/* image styles */
+main.gallery-grid {
+  /* one column by default (phones / tablets) */
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;          // space between cards
+  margin: 0 auto;
+  padding: 10px;
+  margin-block: 4rem; // optional vertical spacing
+  width: 100%;
+  min-width: 380px;
+}
+
+section {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 0 15px 0 15px;
+}
+
+section p {
+  padding: 20px;
+}
+
+/* Container for cards */
+.my-card {
+  background: #fff;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgb(0 0 0 / .08);
+  margin: 25px;
+  padding: 10px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1350px) {
+
+  /* 1. keep the whole image visible */
+  .my-card img.gallery {
+    width: 100%;          // span the card’s width
+    height: auto;         // let the height scale
+    object-fit: contain;  // ⇢ no cropping
+    object-position: center center; // ⇢ stay centered
+    display: block;
+    margin-inline: auto;  // ⇢ horizontal centering safety net
+  }
+}
+
+@media (min-width: 992px) { // ≈ Bootstrap’s lg breakpoint
+  main.gallery-grid {
+    /* two equal columns on desktop */
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* -------------------------------------------------------
+   --------- Extra-small screens  ≤ 430 px ---------------
+   ------------------------------------------------------ */
+@media only screen and (max-width: 430px) {
+
+  main.gallery-grid {
+    /* one column on mobile */
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+  }
+  /* Make the card itself fill the viewport width */
+  .my-card {
+    width: 100%;
+  }
+
+  /* Keep the whole picture visible and centred */
+  .my-card img.gallery {
+    width: 100%;          // stretch to the card’s width
+    height: auto;         // preserve aspect ratio
+    object-fit: contain;  // never crop
+    object-position: center center;
+    display: block;
+  }
+}
+
+
