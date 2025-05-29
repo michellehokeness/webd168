@@ -79,6 +79,13 @@ caption {
   color: #6b727b;
 }
 
+form {
+  /* 1 — treat the form as a regular block */
+  margin: 0;
+  text-align: left;
+  display: block;
+}
+
 thead {
   background-color: #c4a6a6;
 }

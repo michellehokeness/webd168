@@ -92,6 +92,13 @@ caption {
   color: #6b727b;
 }
 
+form {
+  /* 1 — treat the form as a regular block */
+    margin: 0;                  // no auto-centering margin
+    text-align: left;           // override any .text-center
+    display: block;             // cancels d-flex or grid on the form itself
+}
+
 thead {
   background-color: color(ratingTable);
 }
