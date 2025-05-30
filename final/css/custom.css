@@ -153,11 +153,12 @@ footer {
 }
 
 .copyright p {
-  padding-bottom: 28px;
+  padding-bottom: 8px;
 }
 
 .line {
   margin: 0 10px;
+  padding-left: 10px;
 }
 
 .social-icons i {
