@@ -36,9 +36,9 @@ initBoard(); // display the board
 const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
 
 if (isTouch){
-  //  … create ghostInput, add its listeners …
+  // ghostInput, and its listeners
   /* -------------------------------------------------
-   ①  Tiny off-screen input to trigger on-screen KB
+       off-screen input to trigger on-screen KB
    ------------------------------------------------- */
 
   const ghostInput = document.createElement('input');
@@ -49,10 +49,12 @@ if (isTouch){
   ghostInput.inputMode    = 'text';   // iOS Safari hint
   ghostInput.maxLength    = 1;
   ghostInput.style.cssText = `
-    position:absolute;
-    left:-9999px; top:0;
+    position:fixed;
+    bottom:0;
+    left:0;
     width:1px; height:1px;
     opacity:0;
+    z-index: -1;
   `;
   document.body.appendChild(ghostInput);
   ghostInput.focus();                 // open keyboard on load
