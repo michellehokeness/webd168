@@ -115,7 +115,6 @@ function setFocus(r, c){
   board.children[activeRow].children[activeCol].classList.add('focused');
 }
 
-window.addEventListener("keydown", handleKey);
 /* create a function to handle the keydown event */
 function initBoard(){
   [...board.children].forEach(row=>{
