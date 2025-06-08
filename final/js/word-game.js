@@ -29,6 +29,60 @@ let currentGuess = "";
 
 const board = document.getElementById("board");
 initBoard(); // display the board
+
+/* -------------------------------------------------
+   Touch vs. non-touch setup
+   ------------------------------------------------- */
+const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+
+if (isTouch){
+  //  … create ghostInput, add its listeners …
+  /* -------------------------------------------------
+   ①  Tiny off-screen input to trigger on-screen KB
+   ------------------------------------------------- */
+
+  const ghostInput = document.createElement('input');
+  ghostInput.type  = 'text';
+  ghostInput.autocomplete = 'off';
+  ghostInput.autocorrect  = 'off';
+  ghostInput.spellcheck   = false;
+  ghostInput.inputMode    = 'text';   // iOS Safari hint
+  ghostInput.maxLength    = 1;
+  ghostInput.style.cssText = `
+    position:absolute;
+    left:-9999px; top:0;
+    width:1px; height:1px;
+    opacity:0;
+  `;
+  document.body.appendChild(ghostInput);
+  ghostInput.focus();                 // open keyboard on load
+
+  /* keep keyboard open whenever the player taps the board */
+  board.addEventListener('click', () => ghostInput.focus());
+
+  /* treat each character typed in the input like a hardware key */
+  ghostInput.addEventListener('input', e => {
+    const ch = e.target.value.toUpperCase();
+    e.target.value = "";                    // clear for next press
+
+    if(ch === '') return;                   // safety
+    if(ch === '\n') { submitGuess(); return; }  // in case some kb sends Enter
+
+    if(/^[A-Z]$/.test(ch))  addLetter(ch);
+  });
+
+  /* Backspace & Enter buttons on touch;
+     simplest: listen for keydown events *inside* the input */
+  ghostInput.addEventListener('keydown', e=>{
+    if(e.key === 'Backspace') { deleteLetter(); e.preventDefault(); }
+    if(e.key === 'Enter')     { submitGuess();  e.preventDefault(); }
+  });
+
+  } else {
+    window.addEventListener('keydown', handleKey);   // desktop/laptop
+  }
+
+
 /* ---------- cursor state ---------- */
 let activeRow = 0;
 let activeCol = 0;
@@ -174,3 +228,4 @@ function submitGuess(){
     setFocus(currentRow,0);                // put cursor at start of next row
   }
 }
+
