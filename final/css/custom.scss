@@ -11,6 +11,7 @@ $colors: (
 @function color($color-name) {
   @return map.get($colors, $color-name);
 }
+
 /* Navigation styles */
 nav {
   background-color: color(accent);
@@ -223,6 +224,10 @@ footer {
       width: 90%;
       height: auto;
     }
+    .fade-img {
+      opacity: 1;
+      // transition: opacity 0.3s ease-in-out;
+    }
     section {
       padding-bottom: 1rem;
       padding-top: 1rem;
@@ -333,4 +338,157 @@ section p {
   }
 }
 
+/* ---------------------------------------------
+---------  Styles for the Game --------------
+---------------------------------------------- */
 
+/* Reset the default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* tile edge controll */
+  --tile: 3.4rem;
+}
+
+.box, .tile {
+  width: var(--tile);
+  aspect-ratio: 1/1;
+}
+
+.word-bg {
+  background-color: #000;
+}
+
+/* places board in the middle of main */
+.boxes {
+  // background-color: #000;
+  margin-inline: auto;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(5, 3.4rem);
+  gap: .45rem;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.words-left {
+  // background-color: #000;
+  display: grid;
+  grid-template-columns: repeat(5, 3.4rem);
+  justify-content: flex-start;
+   gap: .45rem;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: -97px;
+  margin-left: 50px;
+  margin-right: 20px;
+}
+
+.words-right {
+  // background-color: #000;
+  display: grid;
+  grid-template-columns: repeat(5, 3.4rem);
+  justify-content: flex-end;
+   gap: .45rem;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: -97px;
+  margin-right: 50px;
+  margin-left: 20px;
+}
+
+/* Container centers the board and holds the rows of the boxes */
+.box {
+  width: 3.4rem;
+  aspect-ratio: 1/1;
+  background-color: #000;
+  border: 2px solid #fff;
+  border-radius: 10%;
+  padding: 5px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 1.8rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/* Tile block styles */
+.tile{
+  width:3.4rem;
+  aspect-ratio:1;
+  border:2px solid #fff;
+  display:flex;
+  align-items: center;
+  place-content:center;
+  font:1.8rem/1 'Roboto', sans-serif;
+  font-weight:700;
+  text-transform:uppercase;
+  background:#000;
+  color:#fff;
+  margin:.2rem;
+  border-radius:10%;
+}
+
+/* Focus ring */
+.tile.focused{
+  outline:2px solid #4dabff;
+  outline-offset:2px;
+}
+
+.win{ /* full-row colour when the word is guessed */
+  background:#ff4d4d;     /* red */
+  border-color:#ff4d4d;
+  color:#fff;
+}
+
+.correct{
+  background:#28a745;   /* Bootstrap’s “success” green */
+  border-color:#28a745;
+  color:#fff;
+}
+.present   {background:#ffc107;color:#000;border-color:#ffc107;} /* yellow */
+.absent    {background:#6c757d;color:#bcb8b8;border-color:#6c757d;} /* grey */
+
+// mid screens 712px to 1016px create a media query for max width 712px
+@media only screen and (min-width: 712px) and (max-width: 1016px) {
+    /* cap and centre the whole set */
+    .word-strip {
+        max-width: 715px;
+        margin-inline: auto;   /* centres horizontally */
+    }
+}
+
+// small screens 430px to 711px create a media query for max width 430px
+@media only screen and (min-width: 430px) and (max-width: 711px) {
+
+    /* cap and centre the whole set */
+    .word-strip {
+        max-width: 430px;
+        margin-inline: auto;   /* centres horizontally */
+    }
+
+    // .words-right {
+    //   display: none;
+    // }
+
+    .words-left {
+      justify-content: center;
+    }
+    
+     /* shrink each tile so 5 of them + gaps fit neatly */
+  :root { --tile: 3rem; }  /* ≈ 48 px; adjust to taste */
+}
