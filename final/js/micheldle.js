@@ -2,6 +2,7 @@ const word_length = 5;
 const max_guesses = 5;
 const words = [
   "prime",
+  "abbey",
   "logic",
   "faith",
   "daddy",
@@ -20,7 +21,10 @@ const words = [
   "digit",
   "handy",
   "excel",
-  "anvil"
+  "anvil",
+  "coder",
+  "ouija",
+  "empty"
 ];
 
 /* Pick the same word for everyone on the same UTC day */
