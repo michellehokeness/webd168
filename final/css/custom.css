@@ -328,6 +328,26 @@ section p {
   box-sizing: border-box;
 }
 
+.accordion-button:not(.collapsed) {
+  color: #fff;
+  background-color: #333;
+}
+
+.accordion-button {
+  background-color: #fff;
+  border: 1px solid #333;
+  color: #333;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  font-weight: 600;
+}
+
+.accordion-button.collapsed {
+  background-color: #333;
+  color: #fff;
+}
+
 :root {
   /* tile edge controll */
   --tile: 3.4rem;
@@ -426,13 +446,7 @@ section p {
   outline-offset: 2px;
 }
 
-.win { /* full-row colour when the word is guessed */
-  background: #ff4d4d; /* red */
-  border-color: #ff4d4d;
-  color: #fff;
-}
-
-.correct {
+.win, .correct { /* full-row colour when the word is guessed */
   background: #28a745; /* Bootstrap’s “success” green */
   border-color: #28a745;
   color: #fff;
