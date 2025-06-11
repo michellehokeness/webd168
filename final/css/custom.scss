@@ -12,6 +12,16 @@ $colors: (
   @return map.get($colors, $color-name);
 }
 
+html, body {
+  height: 100%; // so flexbox can stretch full viewport
+}
+
+body {
+  display: flex; // vertical stack - header - main - footer
+  flex-direction: column;
+  min-height: 100vh; // full height
+}
+
 /* Navigation styles */
 nav {
   background-color: color(accent);
@@ -145,6 +155,8 @@ footer {
   color: #fff;
   background-color: color(accent);
   font-size: 1.2rem;
+  width: 100%;
+  flex-shrink: 0;
 }
  
 .logo-footer { // gives space for svg image
@@ -233,6 +245,10 @@ footer {
       padding-top: 1rem;
     }
 
+    ol, ul {
+      padding-left: 0;
+    }
+
     img.cat {
       min-width: 250px;
       width: 45%;
@@ -276,10 +292,6 @@ section {
   justify-content: center;
   text-align: center;
   margin: 0 15px 0 15px;
-}
-
-section p {
-  padding: 20px;
 }
 
 /* Container for cards */
@@ -444,6 +456,10 @@ section p {
   text-transform: uppercase;
 }
 
+main.board {
+  flex: 1 0 auto;
+}
+
 .board {
   display: flex;
   flex-direction: column;
@@ -451,7 +467,7 @@ section p {
   align-items: center;
 }
 /* Tile block styles */
-.tile{
+.tile {
   width:3.4rem;
   aspect-ratio:1;
   border:2px solid #fff;
@@ -468,7 +484,7 @@ section p {
 }
 
 /* Focus ring */
-.tile.focused{
+.tile.focused {
   outline:2px solid #4dabff;
   outline-offset:2px;
 }
@@ -505,14 +521,14 @@ section p {
         margin-inline: auto;   /* centres horizontally */
     }
 
-    // .words-right {
-    //   display: none;
-    // }
-
     .words-left {
       justify-content: center;
     }
     
      /* shrink each tile so 5 of them + gaps fit neatly */
-  :root { --tile: 3rem; }  /* ≈ 48 px; adjust to taste */
+    :root { --tile: 3rem; }  /* ≈ 48px; adjust to taste */
+
+    .board{
+    margin-top: 30px;
+    }
 }
