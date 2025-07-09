@@ -1,5 +1,7 @@
 const word_length = 5;
 const max_guesses = 5;
+const STORAGE_KEY = "daily-word-state";
+
 const words = [
   "prime",
   "abbey",
@@ -27,6 +29,24 @@ const words = [
   "empty"
 ];
 
+/* ---------- per-day answer ---------- */
+const answer = getTodaysWord().toUpperCase();
+
+/* ---------- mutable game state ---------- */
+let guesses = [];
+let currentRow = 0;
+let currentGuess = "";
+
+/* ---------- cursor state ---------- */
+let activeRow = 0;
+let activeCol = 0;
+
+/* ---------- board setup ---------- */
+const board = document.getElementById("board");
+initBoard(); // display the board
+/* ---------- bring back yesterday’s progress ---------- */
+loadState();              // <-- new line
+
 /* Pick the same word for everyone on the same UTC day */
 function getTodaysWord(){
   // 1. pick arbitrary “epoch” date; change if you like
@@ -44,13 +64,86 @@ function getTodaysWord(){
   return words[idx];
 }
 
-// const answer = words[Math.floor(Math.random() * words.length)].toUpperCase();
-const answer = getTodaysWord().toUpperCase();
-let currentRow = 0;
-let currentGuess = "";
+/* -------------------------------------------------
+   Game setup to load state from localStorage
+   ------------------------------------------------- */
+ function saveState() {
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify({ answer, guesses, currentGuess })
+  );
+}
 
-const board = document.getElementById("board");
-initBoard(); // display the board
+ function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (!raw) return;
+
+  const { answer: savedAns,
+          guesses: savedGuesses = [],
+          currentGuess: cg = "" } = JSON.parse(raw);
+
+  if (savedAns !== answer) {
+    localStorage.removeItem(STORAGE_KEY);   // new puzzle today
+    return;
+  }
+
+  /* Reset globals exactly to what we read from storage */
+  guesses      = [...savedGuesses];
+  currentRow   = 0;               // we’ll advance it ourselves
+  currentGuess = "";
+
+  /* Re-draw finished rows WITHOUT re-pushing */
+  savedGuesses.forEach(g => {
+    currentGuess = g;
+    colourRow(currentRow, g);     // helper shown below
+    currentRow++;
+  });
+
+  /* Re-draw half-typed row */
+  currentGuess = cg;
+  cg.split("").forEach((ch,i) => {
+    board.children[currentRow].children[i].textContent = ch;
+  });
+   
+  setFocus(currentRow, cg.length || 0);     // put cursor after last letter
+ }
+
+
+function colourRow(rowIdx, guess){
+  const guessArr  = guess.split("");
+  const answerArr = answer.split("");
+  const freqCount = {};
+  answerArr.forEach(ch => freqCount[ch] = (freqCount[ch]||0)+1);
+
+  /* green pass */
+  guessArr.forEach((ch,i) => {
+    const tile = board.children[rowIdx].children[i];
+    tile.textContent = ch;          // 1. restore the letter itself
+    if (ch === answerArr[i]) {
+      tile.classList.add("correct");
+      freqCount[ch]--;
+      guessArr[i] = null;
+    }
+  });
+
+  /* yellow / grey pass */
+  guessArr.forEach((ch,i) => {
+    if (ch===null) return;
+    const tile = board.children[rowIdx].children[i];
+    tile.textContent = ch;          // 2. shows the letter here as well
+    if (freqCount[ch] > 0) {
+      tile.classList.add("present");
+      freqCount[ch]--;
+    } else {
+      tile.classList.add("absent");
+    }
+  });
+}
+
+
+
+// const answer = words[Math.floor(Math.random() * words.length)].toUpperCase();
+
 
 /* -------------------------------------------------
    Touch vs. non-touch setup
@@ -107,18 +200,6 @@ if (isTouch){
   }
 
 
-/* ---------- cursor state ---------- */
-let activeRow = 0;
-let activeCol = 0;
-
-/* highlight the first tile initially */
-setFocus(activeRow, activeCol);
-
-/* attach one click listener for every tile created in initBoard() */
-[...board.querySelectorAll('.tile')].forEach(tile =>
-  tile.addEventListener('click', handleTileClick)
-);
-
 function handleTileClick(e){
   const tile   = e.currentTarget;
   const rowIdx = [...board.children].indexOf(tile.parentElement);
@@ -140,13 +221,25 @@ function setFocus(r, c){
 }
 
 /* create a function to handle the keydown event */
-function initBoard(){
-  [...board.children].forEach(row=>{
-    for(let i=0;i<word_length;i++){
-      row.appendChild(document.createElement("div")).className="tile";
+function initBoard() {
+  for (let r = 0; r < max_guesses; r++) {
+    const row = document.createElement("div");
+    row.className = "row mb-2 d-flex justify-content-center";
+    for (let c = 0; c < word_length; c++) {
+      row.appendChild(document.createElement("div")).className = "tile";
     }
-  });
+    board.appendChild(row);
+  }
+
+  /* add listeners once the tiles exist */
+  [...board.querySelectorAll(".tile")].forEach(t =>
+    t.addEventListener("click", handleTileClick)
+  );
+
+  /* put the cursor on the very first tile */
+  setFocus(0, 0);
 }
+
 
 function handleKey(e){
   const key = e.key.toUpperCase();
@@ -162,6 +255,7 @@ function addLetter(letter){
   const tile = board.children[activeRow].children[activeCol];
   tile.textContent = letter;
   currentGuess = replaceAt(currentGuess, activeCol, letter);
+  saveState();
 
   /* advance cursor */
   if(activeCol < word_length-1){
@@ -170,28 +264,24 @@ function addLetter(letter){
 }
 
 function deleteLetter(){
-  /* when row is totally empty → nothing to do */
+  /* when row is totally empty, nothing to do */
   if(!currentGuess.trim()) return;
 
   const tile = board.children[activeRow].children[activeCol];
 
-  /* 1️⃣ If the current tile is empty, move left first */
+  /* 1. If the current tile is empty, move left first */
   if(!tile.textContent && activeCol > 0){
     setFocus(activeRow, activeCol - 1);
   }
 
-  /* 2️⃣ Now erase the letter at the (new) cursor position */
+  /* 2. Now erase the letter at the (new) cursor position */
   const eraseTile = board.children[activeRow].children[activeCol];
   eraseTile.textContent = "";
 
-  /* wipe same spot in currentGuess */
+  /* 3. update game state  currentGuess */
   currentGuess = replaceAt(currentGuess, activeCol, "");
+  saveState();
 
-  /* 3️⃣ Finally, if we’re not at col 0, keep the cursor one step left
-        (so repeated Backspaces keep deleting)                        */
-  if(activeCol > 0){
-    setFocus(activeRow, activeCol - 1);
-  }
 }
 
 /* ------------ helper, no padding ------------ */
@@ -202,26 +292,18 @@ function replaceAt(str,pos,ch){
 }
 
 function submitGuess(){
-  if(currentGuess.length < word_length) return;       
-
-  /* -------- immediate win check -------- */
-  if(currentGuess === answer){
-    // paint entire row red
-    [...board.children[currentRow].children].forEach(tile=>{
-      tile.classList.add('win');           // new class
-    });
-    setTimeout(()=>alert("🎉 You got it!"),100);
-    window.removeEventListener("keydown", handleKey);
-    return;                                // no need for further scoring
-  }
-
-  /* ---- otherwise do normal green/yellow/grey scoring ---- */
-  const guessArr  = currentGuess.split("");
+  if (currentGuess.length < word_length) return; 
+     
+  const played = currentGuess;        // keep a copy
+  guesses.push(played);               // save finished word
+  
+  /* ---------- score & colour the *played* row ---------- */
+  const guessArr  = played.split("");
   const answerArr = answer.split("");
   const freqCount = {};
-  answerArr.forEach(ch => freqCount[ch] = (freqCount[ch]||0)+1);
+  answerArr.forEach(ch => freqCount[ch] = (freqCount[ch] || 0)+1);
 
-  /* 1️⃣ green pass */
+  /* 1. green pass */
   guessArr.forEach((ch,i)=>{
     const tile = board.children[currentRow].children[i];
     if(ch === answerArr[i]){
@@ -231,7 +313,7 @@ function submitGuess(){
     }
   });
 
-  /* 2️⃣ yellow/grey pass */
+  /* 2. yellow/grey pass */
   guessArr.forEach((ch,i)=>{
     if(ch===null) return;
     const tile = board.children[currentRow].children[i];
@@ -243,12 +325,25 @@ function submitGuess(){
     }
   });
 
-  /* advance to next row or fail after 5 guesses */
-  if(++currentRow === max_guesses){
-    setTimeout(()=>alert(`😢 Out of guesses!\nAnswer: ${answer}`),100);
-  }else{
-    currentGuess = "";
-    setFocus(currentRow,0);                // put cursor at start of next row
-  }
+  /* ---------- win / lose check using *played* ---------- */
+  if (played === answer) {
+  setTimeout(() => alert("Yea!! You got it!"), 100);
+    window.removeEventListener("keydown", handleKey);
+    currentGuess = "";          // make sure nothing is cached
+  saveState();          // blank currentGuess is now in storage
+  return;               // stop here – no need to advance row
+}
+
+
+  /* ---------- advance row or end game ---------- */
+  currentRow++;
+  currentGuess = "";
+  saveState() // write clean state *after* clearing
+
+  if (currentRow === max_guesses && played !== answer) {
+   setTimeout(() => alert(`Bummer! Out of guesses!\nAnswer: ${answer}`), 100);
+ } else {
+   setFocus(currentRow, 0);          // ready for next guess
+ }
 }
 
