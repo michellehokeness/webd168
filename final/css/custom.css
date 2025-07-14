@@ -477,6 +477,61 @@ main.board {
   color: #bcb8b8;
   border-color: #6c757d;
 } /* grey */
+/* -----------------------------------------------------------------------------
+--------------------------- keyboard styles ------------------------------------
+-------------------------------------------------------------------------------- */
+#keyboard {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  margin: 0;
+  margin-bottom: 25px;
+}
+
+.kbd-key {
+  width: 32px;
+  height: 42px;
+  line-height: 42px;
+  font-weight: 600;
+  border-radius: 4px;
+  border: none;
+  background: #d3d6da;
+}
+
+.enter-key {
+  width: 55px;
+  align-items: center;
+  justify-content: center;
+  font-size: small;
+  font-weight: 600;
+  padding: 2px;
+  padding-top: 3px;
+} /* wider enter key */
+.delete-key {
+  width: 35px;
+  font-size: large;
+}
+
+.kbd-key:active {
+  background: #a4a7ab;
+}
+
+.kbd-key.correct {
+  background: #28a745; /* Bootstrap’s “success” green */
+  border-color: #28a745;
+  color: #fff;
+}
+
+.kbd-key.present {
+  background: #ffc107;
+  color: #000;
+  border-color: #ffc107;
+} /* yellow */
+.kbd-key.absent {
+  background: #6c757d;
+  color: #bcb8b8;
+  border-color: #6c757d;
+} /* grey */
 @media only screen and (min-width: 712px) and (max-width: 1016px) {
   /* cap and centre the whole set */
   .word-strip {
