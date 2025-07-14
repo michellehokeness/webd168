@@ -26,7 +26,13 @@ const words = [
   "anvil",
   "coder",
   "ouija",
-  "empty"
+  "empty",
+  "guess",
+  "stink",
+  "forum",
+  "globe",
+  "board"
+
 ];
 
 /* ---------- per-day answer ---------- */
