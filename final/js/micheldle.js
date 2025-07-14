@@ -106,14 +106,15 @@ loadState();              // <-- new line
 /* Pick the same word for everyone on the same UTC day */
 function getTodaysWord(){
   // 1. pick arbitrary “epoch” date; change if you like
-  const epoch = new Date(Date.UTC(2025, 0, 1));        // 1 Jan 2025 00:00 UTC
+  const epoch = new Date(2025, 0, 1);        // 1 Jan 2025 local time
+  const now   = new Date();                  
 
-  // 2. today at 00:00 UTC
-  const now   = new Date();
-  const todayUTC = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  // 2. today at 00:00 local time
+  
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
   // 3. how many days have passed since epoch?
-  const daysSince = Math.floor((todayUTC - epoch) / 86_400_000); // 86 400 000 ms/day
+  const daysSince = Math.floor((today - epoch) / 86_400_000); // 86 400 000 ms/day
 
   // 4. deterministic index
   const idx = daysSince % words.length;
@@ -386,15 +387,15 @@ function submitGuess(){
 function scheduleNextUtcMidnightRefresh () {
   const now = new Date();
   const msSinceUtcMidnight =
-        now.getTime() - Date.UTC(now.getUTCFullYear(),
-                                 now.getUTCMonth(),
-                                 now.getUTCDate());
-  const msUntilNextUtcMidnight = 86_400_000 - msSinceUtcMidnight;
+        now.getTime() - new Date(now.getFullYear(),
+                                 now.getMonth(),
+                                 now.getDate()).getTime();
+  const msUntilNextUtcMidnight = 86_400_000 - msSincelocalMidnight;
 
   setTimeout(() => {
     localStorage.removeItem(STORAGE_KEY);   // forget yesterday’s state
     location.reload();                      // restart code → new answer
-  }, msUntilNextUtcMidnight + 1_000);       // +1 s safety cushion
+  }, msUntilNextLocalMidnight + 1_000);       // +1 s safety cushion
 }
 
 scheduleNextUtcMidnightRefresh();
