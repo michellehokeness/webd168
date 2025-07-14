@@ -36,6 +36,7 @@ const answer = getTodaysWord().toUpperCase();
 let guesses = [];
 let currentRow = 0;
 let currentGuess = "";
+let completed = false; 
 
 /* ---------- cursor state ---------- */
 let activeRow = 0;
@@ -44,13 +45,62 @@ let activeCol = 0;
 /* ---------- board setup ---------- */
 const board = document.getElementById("board");
 initBoard(); // display the board
+
+// Create a keyboard for the user to guess letters
+function initKeyboard() {
+  const layout = [
+  ["Q","W","E","R","T","Y","U","I","O","P"],
+  ["A","S","D","F","G","H","J","K","L"],
+  ["ENTER","Z","X","C","V","B","N","M","⌫"]
+];
+
+  const kb = document.getElementById("keyboard");
+
+  layout.forEach(row => {
+    const rowDiv = document.createElement("div");
+    rowDiv.className = "kbd-row d-flex justify-content-center mb-1";
+
+    [...row].forEach(ch => {
+      const key = document.createElement("button");
+      key.type  = "button";
+      key.className = "kbd-key btn btn-sm mx-1";   // use your own classes
+      key.textContent = ch === "⌫" ? "⌫" : ch;     // show glyphs
+      key.dataset.key = ch;                        // store the value
+
+       /* —— extra class names for the two action keys —— */
+      if (ch === "ENTER") {
+        key.classList.add("enter-key");            // <— new class
+      } else if (ch === "⌫") {
+        key.classList.add("delete-key");           // <— new class
+      }
+
+      key.addEventListener("click", handleVirtualKey);
+      rowDiv.appendChild(key);
+    });
+
+    kb.appendChild(rowDiv);
+  });
+}
+
+function handleVirtualKey(e) {
+  const key = e.currentTarget.dataset.key;
+
+  if (key === "⌫")          deleteLetter();
+  else if (key === "ENTER") submitGuess();
+  else                       addLetter(key);
+  
+  /* keep focus rectangle on the board, not on the button */
+  board.focus?.();          // optional: if you gave #board tabindex="0"
+}
+
+initKeyboard();
 /* ---------- bring back yesterday’s progress ---------- */
 loadState();              // <-- new line
 
 /* Pick the same word for everyone on the same UTC day */
 function getTodaysWord(){
   // 1. pick arbitrary “epoch” date; change if you like
-  const epoch = new Date(Date.UTC(2025, 5, 10));        // 1 Jan 2025 00:00 UTC
+  const epoch = new Date(Date.UTC(2025, 0, 1));        // 1 Jan 2025 00:00 UTC
 
   // 2. today at 00:00 UTC
   const now   = new Date();
@@ -70,7 +120,7 @@ function getTodaysWord(){
  function saveState() {
   localStorage.setItem(
     STORAGE_KEY,
-    JSON.stringify({ answer, guesses, currentGuess })
+    JSON.stringify({ answer, guesses, currentGuess, completed })
   );
 }
 
@@ -80,14 +130,16 @@ function getTodaysWord(){
 
   const { answer: savedAns,
           guesses: savedGuesses = [],
-          currentGuess: cg = "" } = JSON.parse(raw);
+          currentGuess: cg = "",
+          completed: wasCompleted = false } = JSON.parse(raw);
 
   if (savedAns !== answer) {
     localStorage.removeItem(STORAGE_KEY);   // new puzzle today
     return;
   }
 
-  /* Reset globals exactly to what we read from storage */
+   /* Reset globals exactly to what we read from storage */
+  completed     = wasCompleted; 
   guesses      = [...savedGuesses];
   currentRow   = 0;               // we’ll advance it ourselves
   currentGuess = "";
@@ -98,8 +150,13 @@ function getTodaysWord(){
     colourRow(currentRow, g);     // helper shown below
     currentRow++;
   });
+   
+  /* if puzzle already finished, just show the board and bail out */
+  if (completed) {
+    return;
+  }
 
-  /* Re-draw half-typed row */
+  /* Otherwise, Re-draw half-typed row and focus it */
   currentGuess = cg;
   cg.split("").forEach((ch,i) => {
     board.children[currentRow].children[i].textContent = ch;
@@ -121,6 +178,7 @@ function colourRow(rowIdx, guess){
     tile.textContent = ch;          // 1. restore the letter itself
     if (ch === answerArr[i]) {
       tile.classList.add("correct");
+      colourKey(ch, "correct"); // shows correct letter in green on keyboard
       freqCount[ch]--;
       guessArr[i] = null;
     }
@@ -133,71 +191,35 @@ function colourRow(rowIdx, guess){
     tile.textContent = ch;          // 2. shows the letter here as well
     if (freqCount[ch] > 0) {
       tile.classList.add("present");
+      colourKey(ch, "present"); // shows correct letter in yellow on keyboard
       freqCount[ch]--;
     } else {
       tile.classList.add("absent");
+      colourKey(ch, "absent"); // shows wrong letter in gray on keyboard
     }
   });
 }
 
+function colourKey(ch, className) {
+  const keyBtn = document.querySelector(
+    `.kbd-key[data-key="${ch}"]`
+  );
+  if (!keyBtn) return;
 
+  /* Don’t downgrade a better colour to a worse one */
+  const rank = { correct: 3, present: 2, absent: 1 };
+  const current = [...keyBtn.classList].find(c => rank[c]);
+  if (!current || rank[className] > rank[current]) {
+    keyBtn.classList.remove("correct", "present", "absent");
+    keyBtn.classList.add(className);
+  }
+}
 
-// const answer = words[Math.floor(Math.random() * words.length)].toUpperCase();
 
 
 /* -------------------------------------------------
    Touch vs. non-touch setup
    ------------------------------------------------- */
-const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
-
-if (isTouch){
-  // ghostInput, and its listeners
-  /* -------------------------------------------------
-       off-screen input to trigger on-screen keyboard
-   ------------------------------------------------- */
-
-  const ghostInput = document.createElement('input');
-  ghostInput.type  = 'text';
-  ghostInput.autocomplete = 'off';
-  ghostInput.autocorrect  = 'off';
-  ghostInput.spellcheck   = false;
-  ghostInput.inputMode    = 'text';   // iOS Safari hint
-  ghostInput.maxLength    = 1;
-  ghostInput.style.cssText = `
-    position:fixed;
-    bottom:0;
-    left:0;
-    width:1px; height:1px;
-    opacity:0;
-    z-index: -1;
-  `;
-  document.body.appendChild(ghostInput);
-  ghostInput.focus();                 // open keyboard on load
-
-  /* keep keyboard open whenever the player taps the board */
-  board.addEventListener('click', () => ghostInput.focus());
-
-  /* treat each character typed in the input like a hardware key */
-  ghostInput.addEventListener('input', e => {
-    const ch = e.target.value.toUpperCase();
-    e.target.value = "";                    // clear for next press
-
-    if(ch === '') return;                   // safety
-    if(ch === '\n') { submitGuess(); return; }  // in case some kb sends Enter
-
-    if(/^[A-Z]$/.test(ch))  addLetter(ch);
-  });
-
-  /* Backspace & Enter buttons on touch;
-     simplest: listen for keydown events *inside* the input */
-  ghostInput.addEventListener('keydown', e=>{
-    if(e.key === 'Backspace') { deleteLetter(); e.preventDefault(); }
-    if(e.key === 'Enter')     { submitGuess();  e.preventDefault(); }
-  });
-
-  } else {
-    window.addEventListener('keydown', handleKey);   // desktop/laptop
-  }
 
 
 function handleTileClick(e){
@@ -308,6 +330,7 @@ function submitGuess(){
     const tile = board.children[currentRow].children[i];
     if(ch === answerArr[i]){
       tile.classList.add("correct");       // green now
+      colourKey(ch, "correct"); // adds greencolor to key
       freqCount[ch]--;
       guessArr[i] = null;
     }
@@ -319,16 +342,19 @@ function submitGuess(){
     const tile = board.children[currentRow].children[i];
     if(freqCount[ch]>0){
       tile.classList.add("present");
+      colourKey(ch, "present"); // adds yellow color to key
       freqCount[ch]--;
     }else{
       tile.classList.add("absent");
+      colourKey(ch, "absent"); // adds grey color to key
     }
   });
 
   /* ---------- win / lose check using *played* ---------- */
   if (played === answer) {
-  setTimeout(() => alert("Yea!! You got it!"), 100);
+  setTimeout(() => alert("Yea!! You got it! See you for tomorrow's game!"), 100);
     window.removeEventListener("keydown", handleKey);
+    completed    = true;                       // mark solved
     currentGuess = "";          // make sure nothing is cached
   saveState();          // blank currentGuess is now in storage
   return;               // stop here – no need to advance row
@@ -341,9 +367,28 @@ function submitGuess(){
   saveState() // write clean state *after* clearing
 
   if (currentRow === max_guesses && played !== answer) {
-   setTimeout(() => alert(`Bummer! Out of guesses!\nAnswer: ${answer}`), 100);
- } else {
+    setTimeout(() => alert(`Bummer! Out of guesses!\nAnswer: ${answer}. See you for tomorrow's game!`), 100);
+    completed = true;                           // mark finished
+    saveState();
+    return;
+ }
    setFocus(currentRow, 0);          // ready for next guess
  }
+
+
+/* refresh page at midnight */
+function scheduleNextUtcMidnightRefresh () {
+  const now = new Date();
+  const msSinceUtcMidnight =
+        now.getTime() - Date.UTC(now.getUTCFullYear(),
+                                 now.getUTCMonth(),
+                                 now.getUTCDate());
+  const msUntilNextUtcMidnight = 86_400_000 - msSinceUtcMidnight;
+
+  setTimeout(() => {
+    localStorage.removeItem(STORAGE_KEY);   // forget yesterday’s state
+    location.reload();                      // restart code → new answer
+  }, msUntilNextUtcMidnight + 1_000);       // +1 s safety cushion
 }
 
+scheduleNextUtcMidnightRefresh();
